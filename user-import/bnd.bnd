@@ -1,0 +1,4 @@
+Bundle-Name: user-import
+Bundle-SymbolicName: com.knowarth.user
+Bundle-Version: 1.0.0
+Include-Resource:@commons-beanutils-1.9.3.jar,@super-csv-2.1.0.jar
