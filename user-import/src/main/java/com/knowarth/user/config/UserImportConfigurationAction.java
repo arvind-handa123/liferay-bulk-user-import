@@ -37,11 +37,9 @@ public class UserImportConfigurationAction extends DefaultConfigurationAction {
 			return;
 		}
 
-		String tabs2 = ParamUtil.getString(actionRequest, "tabs2", "basic-csv");
-		String customFields = "";
+		String customFields = ParamUtil.getString(actionRequest, "customFields", "");
+		String passwordType = ParamUtil.getString(actionRequest, "passwordType", "");
 
-
-		customFields = ParamUtil.getString(actionRequest, "customFields", "");
 		if (_log.isDebugEnabled()) {
 			_log.debug("customFields " + customFields);
 		}
@@ -50,6 +48,7 @@ public class UserImportConfigurationAction extends DefaultConfigurationAction {
 			PortletPreferences preferences = PortletPreferencesFactoryUtil.getPortletSetup(actionRequest,
 					portletResource);
 			preferences.setValue("customFields", customFields);
+			preferences.setValue("passwordType", passwordType);
 			preferences.store();
 
 			SessionMessages.add(actionRequest, "success");

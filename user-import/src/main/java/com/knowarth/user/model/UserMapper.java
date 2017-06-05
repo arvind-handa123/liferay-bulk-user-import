@@ -9,7 +9,6 @@ public class UserMapper {
 	String email;
 	String firstName;
 	String lastName;
-	String password;
 	boolean male;
 	String jobTitle;
 	Date birthday;
@@ -71,14 +70,6 @@ public class UserMapper {
 
 	public void setMale(boolean male) {
 		this.male = male;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getJobTitle() {
@@ -188,12 +179,13 @@ public class UserMapper {
 	@Override
 	public String toString() {
 		return "UserMapper [liferayUserId=" + liferayUserId + ", username=" + username + ", email=" + email
-				+ ", firstName=" + firstName + ", lastName=" + lastName + ", password=" + password + ", male=" + male
-				+ ", jobTitle=" + jobTitle + ", birthday=" + birthday + ", impStatus=" + impStatus + ", customField1="
-				+ customField1 + ", customField2=" + customField2 + ", customField3=" + customField3 + ", customField4="
-				+ customField4 + ", customField5=" + customField5 + ", customField6=" + customField6 + ", customField7="
-				+ customField7 + ", customField8=" + customField8 + ", customField9=" + customField9
-				+ ", customField10=" + customField10 + "]";
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", male=" + male + ", jobTitle=" + jobTitle
+				+ ", birthday=" + birthday + ", impStatus=" + impStatus + ", customField1=" + customField1
+				+ ", customField2=" + customField2 + ", customField3=" + customField3 + ", customField4=" + customField4
+				+ ", customField5=" + customField5 + ", customField6=" + customField6 + ", customField7=" + customField7
+				+ ", customField8=" + customField8 + ", customField9=" + customField9 + ", customField10="
+				+ customField10 + "]";
 	}
+
 
 }

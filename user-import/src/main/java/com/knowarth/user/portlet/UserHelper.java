@@ -24,8 +24,6 @@ public class UserHelper {
 	}
 
 	private void init() {
-	//	_log.info("Initialising users.");
-	//	users = userReader.readUsers();
 	}
 
 	public static UserHelper getInstance() {

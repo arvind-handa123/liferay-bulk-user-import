@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
@@ -59,12 +60,14 @@ public class UserServiceImpl {
 		User user = null;
 		try {
 			ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-
+			String portletInstanceId = (String) request.getAttribute(WebKeys.PORTLET_ID);
+	    	PortletPreferences preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletInstanceId);
+	    	String passwordType = preferences.getValue("passwordType","auto");
 			long creatorUserId = themeDisplay.getUserId(); 
 			long companyId = themeDisplay.getCompanyId(); 
-			boolean autoPassword = false;
-			String password1 = userBean.getPassword();
-			String password2 = userBean.getPassword();
+			boolean autoPassword = passwordType.equalsIgnoreCase("auto") ? Boolean.TRUE : Boolean.FALSE;
+			String password1 = passwordType.equalsIgnoreCase("auto") ? StringPool.BLANK : userBean.getUsername()+123;
+			String password2 = passwordType.equalsIgnoreCase("auto") ? StringPool.BLANK : userBean.getUsername()+123;
 			boolean autoScreenName = false;
 			String screenName = userBean.getUsername();
 			String emailAddress = userBean.getEmail();
@@ -201,12 +204,6 @@ public class UserServiceImpl {
 		try {
 			String portletInstanceId = (String) request.getAttribute(WebKeys.PORTLET_ID);
 
-			/*TODO with the current user we have to check if he can use the expando fields
-	  	ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-	    long userId = themeDisplay.getUserId(); 
-	    long companyId = themeDisplay.getCompanyId(); 
-	    User userAdmin = UserLocalServiceUtil.getUser(userId);
-			 */
 			preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletInstanceId);
 			String customFields = preferences.getValue("customFields", "");
 			if(customFields != null && !customFields.isEmpty()) {

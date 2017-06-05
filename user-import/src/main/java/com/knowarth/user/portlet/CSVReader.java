@@ -52,7 +52,7 @@ public class CSVReader {
   }
 
   final CellProcessor[] processors = new CellProcessor[] {
-		  new NotNull(), new NotNull(), new NotNull(), new NotNull(), new NotNull(), 
+		  new NotNull(), new NotNull(), new NotNull(), new NotNull(), 
 		  new Optional(new ParseBool()), null, new Optional(new ParseDate("dd-MM-yyyy")),
 		  null, null, null, null, null, 
 		  null, null, null, null, null};
@@ -86,17 +86,16 @@ public class CSVReader {
     	for(int z = k; z < 10; z++){
     		cFields[z] = null;
     	}
-        final String[] header = new String[18];
+        final String[] header = new String[17];
         header[0] = "username";
         header[1] ="email";
         header[2] = "firstName"; 
         header[3] = "lastName";
-        header[4] ="password";
-        header[5] = "male"; 
-        header[6] = "jobTitle"; 
-        header[7] = "birthday";
-    	for (int j = 8; j < 18 ; j++) {
-    		header[j] = cFields[j-8];
+        header[4] = "male"; 
+        header[5] = "jobTitle"; 
+        header[6] = "birthday";
+    	for (int j = 7; j < 17 ; j++) {
+    		header[j] = cFields[j-7];
     	}
     	if(_log.isDebugEnabled()) {
         	_log.debug("Header for mapping: "+ Arrays.toString(header));
@@ -106,7 +105,7 @@ public class CSVReader {
     	// header verify
     	final String[] header_temp = inFile.getHeader(true);
     	List<String> expectedHeaders = Arrays.asList("username","email","firstName","lastName",
-        		"password","male","jobTitle","birthday"
+        		"male","jobTitle","birthday"
         		,"customField1","customField2","customField3","customField4","customField5"
         		,"customField6","customField7","customField8","customField9","customField10"
         		);
